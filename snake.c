@@ -10,9 +10,6 @@
 #define WINDOW_MIN_WIDTH 28
 #define WINDOW_MIN_HEIGHT 7
 
-#define WIDTH 28
-#define HEIGHT 7
-
 #define CHAR_WALL  '#'
 #define CHAR_SPACE ' '
 #define CHAR_SNAKE 'O'
