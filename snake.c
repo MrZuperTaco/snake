@@ -80,7 +80,7 @@ uint32_t board_random_index(Board *board) {
 uint32_t board_random_food_index(Board *board) {
 	uint32_t food_index = board_random_index(board);
 
-	while (board->buffer[food_index] != ' ') {
+	while (board->buffer[food_index] != CHAR_SPACE) {
 		food_index = board_random_index(board);
 	}
 
@@ -154,7 +154,7 @@ int main() {
 		.j = board.width / 2,
 	};
 
-	board_set_char(&board, snake.i, snake.j, 'O');
+	board_set_char(&board, snake.i, snake.j, CHAR_SNAKE);
 	board.buffer[board_random_food_index(&board)] = CHAR_FOOD;
 	uint64_t score = 0;
 	render(&board, score);
@@ -213,7 +213,7 @@ int main() {
 
 		if (chr_board == CHAR_SPACE) {
 			uint32_t last_index = circular_uint32_pop_tail(snake.body_indices);
-			board.buffer[last_index] = ' ';
+			board.buffer[last_index] = CHAR_SPACE;
 		}
 		if (chr_board == CHAR_FOOD) {
 			score += 5 * circular_uint32_length(snake.body_indices);
@@ -248,7 +248,7 @@ int main() {
 			snake.i = board.height / 2;
 			snake.j = board.width / 2;
 			board_init(&board);
-			board_set_char(&board, snake.i, snake.j, 'O');
+			board_set_char(&board, snake.i, snake.j, CHAR_SNAKE);
 			board.buffer[board_random_food_index(&board)] = CHAR_FOOD;
 			score = 0;
 			render(&board, score);
